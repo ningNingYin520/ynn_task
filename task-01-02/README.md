@@ -124,24 +124,28 @@ const { Maybe,Container } = require('./support')
 let maybe = Maybe.of([5,6,1]) 
 
 答案：
-let ex1 = 
+let ex1 = x => maybe.map(fp.map(item=>fp.add(item,x) ))
 
 练习2:
 实现一个函数 ex2，能够使用 fp.first 获取列表的第一个元素
+const fp = require('lodash/fp')
+const {Maybe, Contaiber} = require('./support')
+let xs = Container.of(['do', 'ray', 'me', 'fa', 'so', 'la', 'ti', 'do'])
 
+答案：
+let ex2 = xs.map(fp.first) 
 
 练习3:
 实现一个函数 ex3，能够使用 safeProp 和 fp.first 找到 user 的名字的首字母
-const fp = require('lodash/fp)
-const {Maybe, Contaiber} = require('./supports)
-
+const fp = require('lodash/fp')
+const { Maybe,Container } = require('./support')
 let safeProp = fp.curry(function(x,o){
   return Maybe.of(o[x])
 })
 let user = {id: 2, name: 'Albert'}
 
 答案：
-
+let ex3 = safeProp('name',user).map(fp.first)
 
 练习4:
 实现 Maybe 重写 ex4，不要有 if 语句
